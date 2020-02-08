@@ -1,0 +1,84 @@
+
+
+----------------
+cartella: public
+file: app.js
+----------------
+const age = 1546;
+
+
+----------------
+cartella: public\css
+file: style.css
+----------------
+body {
+  color: red;
+}
+
+
+----------------
+cartella: public
+file: fileC.txt
+----------------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Suspendisse mattis leo et lacus dictum consectetur. 
+Nulla convallis urna pretium, rutrum felis ut, ultricies ex. 
+Vestibulum venenatis turpis at ante consectetur facilisis. 
+Pellentesque euismod lacus ex, vitae aliquet eros cursus quis. 
+Mauris at malesuada elit, ut laoreet turpis. Morbi et venenatis justo. 
+Aliquam luctus pharetra malesuada. 
+In sit amet dapibus nulla, ut pretium purus. Donec rhoncus tellus vitae lacus elementum lobortis.
+
+----------------
+cartella: public\js
+file: fileE.txt
+----------------
+Banana
+
+----------------
+cartella: public\js
+file: fileF.txt
+----------------
+Mela
+
+----------------
+cartella: public\js
+file: test.php
+----------------
+<?php
+echo 'test';
+
+
+//File path of final result
+$filepath = "mergedfiles.txt";
+
+$out = fopen($filepath, "w");
+//Then cycle through the files reading and writing.
+
+$filepathsArray = ['fileA.txt', 'fileB.txt'];
+
+foreach ($filepathsArray as $file) {
+    $in = fopen($file, "r");
+    while ($line = fgets($in)) {
+        print $file;
+        fwrite($out, $line);
+    }
+    fclose($in);
+}
+
+//Then clean up
+fclose($out);
+
+return $filepath;
+
+----------------
+cartella: public\js\utils
+file: fileG.txt
+----------------
+Uva
+
+----------------
+cartella: public\js\utils
+file: fileH.txt
+----------------
+cane
