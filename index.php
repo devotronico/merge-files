@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Ritorna lista di file e cartelle
+ *
+ * @param [type] $dir
+ * @param array $results
+ * @return void
+ */
 function getDirContents($dir, &$results = array())
 {
     $files = scandir($dir);
@@ -18,12 +25,19 @@ function getDirContents($dir, &$results = array())
 }
 
 
-/// UNISCI I FILE IN UN UNICO FILE
+/**
+ * UNISCE I FILE IN UN UNICO FILE
+ * [a] File path of final result
+ * [b] crea e apre il file
+ * [c] cicla la lista di file e cartelle
+ * @param [type] $filepathsArray
+ * @return void
+ */
 function mergeFiles($filepathsArray)
 {
-    $filepath = "mergedfiles.txt"; // File path of final result
-    $out = fopen($filepath, "w");
-    foreach ($filepathsArray as $file) {
+    $filepath = "mergedfiles.txt"; // [a]
+    $out = fopen($filepath, "w"); // [b]
+    foreach ($filepathsArray as $file) { // [c]
         if (preg_match('/^.+\.(txt|js|css|php)$/', $file)) {
             $path = dirname($file);
             $baseName = basename($file);
@@ -35,19 +49,16 @@ file: $baseName
 ----------------
 EOD;
             $header = PHP_EOL . PHP_EOL . $header . PHP_EOL;
-
             fwrite($out, $header);
-            // fwrite($out, $baseName);
             $in = fopen($file, "r");
             while ($line = fgets($in)) {
-                print $file;
-                echo '<br>';
+                // print $file . '<br>'; // DEBUG
                 fwrite($out, $line);
             }
             fclose($in);
         }
     }
-    fclose($out); //Then clean up
+    fclose($out); // chiude e pulisce
 
     return $filepath;
 }
